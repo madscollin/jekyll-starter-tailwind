@@ -2,4 +2,73 @@
 layout: default
 ---
 
-<h1 class="text-white text-4xl font-semibold">Jekyll Starter Tailwind</h1>
+<a href="#" class="flex items-center mt-4 xl:mt-8">
+    <div class="tracking-wider rounded-md w-full h-80 bg-gray-100 uppercase text-gray-500 text-3xl flex items-center justify-center font-medium">
+        Banner
+    </div>
+    <!-- <img class="filter drop-shadow rounded-md" width="1280" src="https://static.cykelshoppen.dk/ai/1200/storage/images/Julebanner1.jpg" /> -->
+</a>
+
+<div class="mt-4 xl:mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-8"
+x-data="
+        { appetizers: [
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/b%C3%B8rnecykler-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/herrecykler-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/damecykler-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/elcykler-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/mountainbike-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/racercykler-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/cykelhjelme-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/reng%C3%B8ring-bw-aug-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/mips-september-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/cykelolie-september-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/k%C3%A6de-september-2021.png',
+            link: '#',
+        },
+        { 
+            image: 'https://static.cykelshoppen.dk/ai/300/storage/images/7-pendlertips-september-2021.png',
+            link: '#',
+        },
+        ]}
+        "
+>
+    <template x-for="appetizer in appetizers" :key="appetizer.image" hidden>
+        <a href="#" class="flex items-center">
+            <div class="tracking-wider rounded-md w-full h-60 bg-gray-100 uppercase text-gray-500 text-xl flex items-center justify-center font-medium">
+                Appetizer
+            </div>
+            <!-- <img class="filter drop-shadow rounded-md" width="300" height="300" :src="appetizer.image" /> -->
+        </a>
+    </template>
+</div>

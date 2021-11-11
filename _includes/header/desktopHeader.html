@@ -1,0 +1,91 @@
+<div class="hidden lg:block bg-white">
+    <div class="flex justify-between items-center container mx-auto py-8 px-5">
+        <a href="/">
+            <img class="h-6 w-72" src="https://static.cykelshoppen.dk/assets/themes/cykelshoppen/images/logo.png" alt="">
+        </a>
+      <div class="flex w-4/12">
+        <div class="relative w-full">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <input type="text" class="w-full py-3 pl-10 pr-4 bg-gray-100 bg-opacity-50 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-4 ring-teal-600 ring-offset-2 transition-all duration-200 ease-in-out" placeholder="Søg">
+        </div>
+      </div>
+      <div class="flex items-center">
+        <!-- Profile dropdown -->
+        <div class="relative" x-data="{ isOpen: false }">
+          <button type="button" @click="isOpen = !isOpen" @keydown.escape="isOpen = false" class="group flex items-center rounded-full focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-teal-600 focus:ring-white transition-all duration-100 ease-in-out" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-8 w-8 text-gray-500 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+
+          <!--
+            Dropdown menu, show/hide based on menu state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+          <div 
+            class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+            x-show="isOpen"
+            @click.away="isOpen = false"
+            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="transform opacity-0 scale-95"
+            x-transition:enter-end="transform opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="transform opacity-100 scale-100"
+            x-transition:leave-end="transform opacity-0 scale-95"
+          >
+            
+            <!-- Active: "bg-gray-100", Not Active: "" -->
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Oversigt</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Alle ordre</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Din konto</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log af</a>
+          </div>
+        </div>
+
+        <!-- Cart dropdown -->
+        <div class="relative ml-3" x-data="{ isOpen: false }">
+          <button type="button" @click="isOpen = !isOpen" @keydown.escape="isOpen = false" class="group flex items-center rounded-full focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-teal-600 focus:ring-white transition-all duration-200 ease-in-out" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-8 w-8 text-gray-500 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <div class="rounded-full flex items-center justify-around bg-teal-500 h-5 w-5 -top-2 -right-2 absolute text-xs font-medium text-teal-50 text-center">4</div>
+          </button>
+
+          <!--
+            Dropdown menu, show/hide based on menu state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+          <div 
+            class="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+            x-show="isOpen"
+            @click.away="isOpen = false"
+            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="transform opacity-0 scale-95"
+            x-transition:enter-end="transform opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="transform opacity-100 scale-100"
+            x-transition:leave-end="transform opacity-0 scale-95"
+          >
+            
+            {% include cart.html %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

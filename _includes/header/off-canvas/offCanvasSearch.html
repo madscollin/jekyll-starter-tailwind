@@ -1,0 +1,85 @@
+
+<!--
+  Mobile menu
+
+  Off-canvas menu for mobile, show/hide based on off-canvas menu state.
+
+  x-transition:enter="transition all ease-out duration-300"
+  x-transition:enter-start="opacity-0 transform scale-90"
+  x-transition:enter-end="opacity-100 transform scale-100"
+  x-transition:leave="transition ease-in duration-300"
+  x-transition:leave-start="opacity-100 transform scale-100"
+  x-transition:leave-end="opacity-0 transform scale-90"
+-->
+<div 
+  x-show="mobileSearch" 
+  @click.outside="mobileSearch = false"
+  class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true"
+>
+  <!--
+    Off-canvas menu overlay, show/hide based on off-canvas menu state.
+
+    Entering: ""
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "transition-opacity ease-linear duration-300"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div 
+    @click="mobileSearch = ! mobileSearch" 
+    class="fixed inset-0 bg-black bg-opacity-25" 
+    x-show="mobileSearch" 
+    aria-hidden="true"
+    x-transition:enter="transition-opacity ease-linear duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition-opacity ease-linear duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+  >
+  </div>
+
+  <!--
+    Off-canvas menu, show/hide based on off-canvas menu state.
+
+    Entering: "transition ease-in-out duration-300 transform"
+      From: "-translate-x-full"
+      To: "translate-x-0"
+    Leaving: "transition ease-in-out duration-300 transform"
+      From: "translate-x-0"
+      To: "-translate-x-full"
+  -->
+  <div 
+    class="relative w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto"
+    x-show="mobileSearch" 
+    x-transition:enter="transition ease-in-out duration-300 transform"
+    x-transition:enter-start="-translate-y-full"
+    x-transition:enter-end="translate-y-0"
+    x-transition:leave="transition ease-in-out duration-300 transform"
+    x-transition:leave-start="translate-y-0"
+    x-transition:leave-end="-translate-y-full"
+    
+    >
+    <div class="p-4 flex justify-between border-b bg-gray-100">
+      <div class="text-lg font-medium flex items-center">
+        <svg class="w-5 h-5 mr-2 text-teal-500" viewBox="0 0 24 24" fill="none">
+          <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="text-gray-700">Søg</span>
+      </div>
+      <button @click="mobileSearch = ! mobileSearch" type="button" class="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400">
+        <span class="sr-only">Close menu</span>
+        <!-- Heroicon name: outline/x -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="p-4 relative">
+      <input x-ref="searchInput" type="text" class="w-full py-3 px-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 ring-teal-500 ring-offset-2" placeholder="Søg">
+    </div>
+
+  </div>
+</div>

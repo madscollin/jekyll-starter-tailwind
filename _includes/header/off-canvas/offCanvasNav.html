@@ -1,0 +1,356 @@
+
+<!--
+  Mobile menu
+
+  Off-canvas menu for mobile, show/hide based on off-canvas menu state.
+
+  x-transition:enter="transition all ease-out duration-300"
+  x-transition:enter-start="opacity-0 transform scale-90"
+  x-transition:enter-end="opacity-100 transform scale-100"
+  x-transition:leave="transition ease-in duration-300"
+  x-transition:leave-start="opacity-100 transform scale-100"
+  x-transition:leave-end="opacity-0 transform scale-90"
+-->
+<div 
+  x-show="mobileNavigation" 
+  @click.outside="mobileNavigation = false"
+  class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true"
+>
+  <!--
+    Off-canvas menu overlay, show/hide based on off-canvas menu state.
+
+    Entering: ""
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "transition-opacity ease-linear duration-300"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div 
+    @click="mobileNavigation = ! mobileNavigation" 
+    class="fixed inset-0 bg-black bg-opacity-25" 
+    x-show="mobileNavigation" 
+    aria-hidden="true"
+    x-transition:enter="transition-opacity ease-linear duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition-opacity ease-linear duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+  >
+  </div>
+
+  <!--
+    Off-canvas menu, show/hide based on off-canvas menu state.
+
+    Entering: "transition ease-in-out duration-300 transform"
+      From: "-translate-x-full"
+      To: "translate-x-0"
+    Leaving: "transition ease-in-out duration-300 transform"
+      From: "translate-x-0"
+      To: "-translate-x-full"
+  -->
+  <div 
+    class="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto"
+    x-show="mobileNavigation" 
+    x-transition:enter="transition ease-in-out duration-300 transform"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in-out duration-300 transform"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    
+    >
+    <div class="px-4 pt-5 pb-2 flex">
+      <button @click="mobileNavigation = ! mobileNavigation" type="button" class="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400">
+        <span class="sr-only">Close menu</span>
+        <!-- Heroicon name: outline/x -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Links -->
+    <div x-data="{ tab: 'tab1' }" class="mt-2">
+      <div class="border-b border-gray-200">
+        <div  class="-mb-px flex px-4 space-x-8" aria-orientation="horizontal" role="tablist">
+          <button 
+            @click.prevent="tab = 'tab1'" 
+            :class="{ 'text-teal-500 border-teal-500' : tab == 'tab1' }"
+            id="tabs-1-tab-1" 
+            class="text-gray-900 border-transparent flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium" aria-controls="tabs-1-panel-1" role="tab" type="button" 
+          >
+            Kategorier
+          </button>
+
+          <button 
+            @click.prevent="tab = 'tab2'" 
+            :class="{ 'text-teal-500  border-teal-500 ' : tab == 'tab2' }"
+            id="tabs-1-tab-2" 
+            class="text-gray-900 border-transparent flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium" aria-controls="tabs-1-panel-2" role="tab" type="button">
+            Brands
+          </button>
+        </div>
+      </div>
+
+      <!-- 'Women' tab panel, show/hide based on tab state. -->
+      <div x-show="tab == 'tab1'" id="tabs-1-panel-1" class="pt-10 pb-8 px-4 space-y-10" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+        <div class="grid grid-cols-2 gap-x-4">
+          <div class="group relative text-sm">
+            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+              <img src="https://static.cykelshoppen.dk/ai/300/storage/images/elcykler-bw-aug-2021.png" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-center object-cover">
+            </div>
+            <a href="#" class="mt-6 block font-medium text-gray-900">
+              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+              Elcykler
+            </a>
+            <p aria-hidden="true" class="mt-1">Køb nu</p>
+          </div>
+
+          <div class="group relative text-sm">
+            <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+              <img src="https://static.cykelshoppen.dk/ai/300/storage/images/damecykler-bw-aug-2021.png" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-center object-cover">
+            </div>
+            <a href="#" class="mt-6 block font-medium text-gray-900">
+              <span class="absolute z-10 inset-0" aria-hidden="true"></span>
+              Damecykler
+            </a>
+            <p aria-hidden="true" class="mt-1">Køb nu</p>
+          </div>
+        </div>
+
+        <div>
+          <p id="women-clothing-heading-mobile" class="font-medium text-gray-900">
+            Cykler
+          </p>
+          <ul role="list" aria-labelledby="women-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Børnecykler / Junior
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Damecykler
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Herrecykler
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Elcykler
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Mountainbike / MTB
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Racercykel
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                BMX Cykler
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Specialcykler
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">
+            Cykelhjelme
+          </p>
+          <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Børne / Junior
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Voksenhjelme
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                MTB Hjelme
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Racerhjelme
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Fullface Hjelme
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Tilbehør / Reservedele
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p id="women-brands-heading-mobile" class="font-medium text-gray-900">
+            Andre kategorier
+          </p>
+          <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Cykeltøj
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Reservedele
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Hjul, Dæk og Slanger
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Udstyr og Tilbehør
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Værktøj og Pleje
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 'Men' tab panel, show/hide based on tab state. -->
+      <div x-show="tab == 'tab2'" id="tabs-1-panel-2" class="pt-10 pb-8 px-4 space-y-10" aria-labelledby="tabs-1-tab-2" role="tabpanel" tabindex="0">
+
+        <div>
+          <p id="men-clothing-heading-mobile" class="font-medium text-gray-900">
+            Brands
+          </p>
+          <ul role="list" aria-labelledby="men-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Bladefang
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Basta
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Castelli
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Conway
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Ebsen
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Trek
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Specialized
+              </a>
+            </li>
+
+            <li class="flow-root">
+              <a href="#" class="-m-2 p-2 block text-gray-500">
+                Se alle
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Kundeservice</a>
+      </div>
+
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Butikken</a>
+      </div>
+
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Guides</a>
+      </div>
+
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Om Cykelshoppen.dk</a>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Log in</a>
+      </div>
+      <div class="flow-root">
+        <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Opret konto</a>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 py-6 px-4">
+      <a href="#" class="-m-2 p-2 flex items-center">
+        <img src="https://flagicons.lipis.dev/flags/4x3/dk.svg" alt="" class="w-5 h-auto block flex-shrink-0">
+        <span class="ml-3 block text-base font-medium text-gray-900">
+          DK
+        </span>
+        <span class="sr-only">, skift land</span>
+      </a>
+    </div>
+  </div>
+</div>

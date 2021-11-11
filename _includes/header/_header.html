@@ -1,0 +1,12 @@
+<div x-data="{ mobileNavigation: false, mobileSearch: false, mobileCart: false }">
+  <div class="flex flex-col lg:flex-col-reverse">
+    {% include header/streamer.html %}
+    {% include header/mobileNav.html %}
+    {% include header/desktopNav.html %}
+    {% include header/desktopHeader.html %}
+    {% include header/uspBar.html %}
+  </div>
+  {% include header/off-canvas/offCanvasNav.html %}
+  {% include header/off-canvas/offCanvasSearch.html %}
+  {% include header/off-canvas/offCanvasCart.html %}
+</div>
