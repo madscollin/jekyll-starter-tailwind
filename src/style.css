@@ -42,3 +42,11 @@
   74.96%, 91.62% { top: 20%; opacity: 1; }
   100% { top: 110%; opacity: 0; }
 }
+
+.thumbnail {
+  opacity: 0.3;
+}
+
+.thumbnail.is-active {
+  opacity: 1;
+}

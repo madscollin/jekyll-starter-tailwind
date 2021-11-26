@@ -1,0 +1,46 @@
+<!-- Product grid -->
+<div class="lg:col-span-3">
+    <!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/aspect-ratio'),
+    ],
+  }
+  ```
+-->
+<div>
+  <div class="w-full">
+ 
+
+    <div class="mt-6 grid grid-cols-1 gap-12 md:px-8 md:grid-cols-2 xl:grid-cols-3">
+      
+
+      {% include productList/productCard.html %}
+      {% include productList/productCardSale.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCardSale.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+      {% include productList/productCard.html %}
+
+      <!-- More products... -->
+    </div>
+  </div>
+</div>
+
+</div>

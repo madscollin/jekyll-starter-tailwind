@@ -3,11 +3,199 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Tailwind Jekyll Starter Kit</title>
+    <title>Cykelshoppen nyt design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.3.1/dist/css/splide.min.css" />
     <script defer src="https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.3.1/dist/js/splide.min.js"></script>
   </head>
 
-  <body>
+  <body x-data="{ 
+    mobileNavigation: false, 
+    mobileSearch: false, 
+    mobileCart: false,
+    showModalInfo: false,
+    showModalPackageShop: false,
+    showModalDeliveryNotice: false,
+    showModalReturningUser: false,
+    showModalGiftCard: false,
+    showModalComment: false,
+    isCheckout: false,
+    categories: [
+      { 
+        name: 'Cykler',
+        link: '#',
+        categoriesLevelTwo: [
+        { 
+          name: 'Børnecykler',
+          link: '#',
+          categoriesLevelThree: [
+          { 
+            name: 'Løbecykler / Legecykler',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 12',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 16',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 18',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 20',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 24',
+            link: '#',
+          },
+          { 
+            name: 'Børnecykel 26',
+            link: '#',
+          },
+          ]
+        },
+        { 
+          name: 'Damecykler',
+          link: '#',
+          categoriesLevelThree: [
+          { 
+            name: 'Damecykel - Citybike',
+            link: '#',
+          },
+          { 
+            name: 'Damecykel - Klassisk',
+            link: '#',
+          },
+          { 
+            name: 'Damecykel - Trekking - Touring',
+            link: '#',
+          },
+          ]
+        },
+        { 
+          name: 'Herrecykler',
+          link: '#',
+          categoriesLevelThree: [
+          { 
+            name: 'Herrecykel - Citybike',
+            link: '/herre-citybike.html',
+          },
+          { 
+            name: 'Herrecykel - Klassisk',
+            link: '/herre-citybike.html',
+          },
+          { 
+            name: 'Herrecykel - Trekking - Touring',
+            link: '/herre-citybike.html',
+          },
+          ]
+        },
+        { 
+          name: 'Elcykler',
+          link: '#',
+          categoriesLevelThree: [
+          { 
+            name: 'Dame elcykel',
+            link: '#',
+          },
+          { 
+            name: 'Herre elcykel',
+            link: '#',
+          },
+          { 
+            name: 'Lav indstignings elcykel',
+            link: '#',
+          },
+          { 
+            name: 'eMTB',
+            link: '#',
+          },
+          { 
+            name: 'Speed Pedelec - 45km/t',
+            link: '#',
+          },
+          ]
+        },
+        { 
+          name: 'Mountainbike',
+          link: '#',
+        },
+        { 
+          name: 'Racercykler',
+          link: '#',
+        },
+        { 
+          name: 'BMX Cykler',
+          link: '#',
+        },
+        { 
+          name: 'Specialcykler',
+          link: '#',
+        },
+        ]
+    
+      },
+      { 
+        name: 'Cykelhjelme',
+        link: '#',
+        categoriesLevelTwo: [
+        { 
+          name: 'Børne / Junior',
+          link: '#',
+        },
+        { 
+          name: 'Voksenhjelme',
+          link: '#',
+        },
+        { 
+          name: 'MTB Hjelme',
+          link: '#',
+        },
+        { 
+          name: 'Racerhjelme',
+          link: '#',
+        },
+        { 
+          name: 'Fullface hjelme',
+          link: '#',
+        },
+        { 
+          name: 'Tilbehør / Reservedele',
+          link: '#',
+        },
+        ]
+      },
+      { 
+        name: 'Cykeltøj',
+        link: '#',
+      },
+      { 
+        name: 'Reservedele',
+        link: '#',
+      },
+      { 
+        name: 'Hjul, dæk og slanger',
+        link: '#',
+      },
+      { 
+        name: 'Udstyr og tilbehør',
+        link: '#',
+      },
+      { 
+        name: 'Værktøj og pleje',
+        link: '#',
+      },
+      { 
+        name: 'Tilbud',
+        link: '#',
+      },
+    ]
+  }">
 </html>

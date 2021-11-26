@@ -1,0 +1,16 @@
+<div class="mt-8">
+    <div class="text-sm">Har du en kommentar til din bestilling?</div>
+    <div class="flex mt-3 text-sm">
+        <div class="flex items-center mr-3">
+            <input @change="customerComment = false" class="mr-1 text-teal-500 focus:ring-teal-500" type="radio" id="commentFalse" name="comment" value="commentFalse" checked>
+            <label class="text-gray-800" for="commentFalse">Nej</label>
+        </div>
+        <div class="flex items-center mr-3">
+            <input @change="customerComment = true" class="mr-1 text-teal-500 focus:ring-teal-500" type="radio" id="commentTrue" name="comment" value="commentTrue">
+            <label class="text-gray-800" for="commentTrue">Ja</label>
+        </div>
+    </div>
+    <div x-show="customerComment">
+        <input type="text" id="customerComment" placeholder="Indtast kommentar" class="mt-4 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out">
+    </div>
+</div>

@@ -1,13 +1,52 @@
 ---
 ---
 
-{% include applicationTop.html %}
-{% include header/_header.html %}
+{% include applicationTop.html %} 
+{% include header/_header.html %} 
 {% include breadCrumb.html %}
 
-<main>
-  {{ content }}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var splide = new Splide("#main-slider", {
+      pagination: false,
+    });
+
+    var thumbnails = document.getElementsByClassName("thumbnail");
+    var current;
+
+    for (var i = 0; i < thumbnails.length; i++) {
+      initThumbnail(thumbnails[i], i);
+    }
+
+    function initThumbnail(thumbnail, index) {
+      thumbnail.addEventListener("click", function () {
+        splide.go(index);
+      });
+    }
+
+    splide.on("mounted move", function () {
+      var thumbnail = thumbnails[splide.index];
+
+      if (thumbnail) {
+        if (current) {
+          current.classList.remove("is-active");
+        }
+
+        thumbnail.classList.add("is-active");
+        current = thumbnail;
+      }
+    });
+
+    splide.mount();
+  });
+</script>
+
+<main class="container mx-auto py-4 lg:py-12 px-5">
+  <div class="grid lg:grid-cols-5 gap-4 md:gap-12 lg:gap-20">
+    {% include productInfo/gallery.html %} 
+    {% include productInfo/productContent.html %}
+  </div>
 </main>
 
-{% include footer/_footer.html %}
+{% include footer/_footer.html %} 
 {% include applicationBottom.html %}

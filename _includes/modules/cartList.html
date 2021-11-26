@@ -1,4 +1,4 @@
-<div class="p-4">
+
   <ul
     x-data="
         { products: [
@@ -6,7 +6,7 @@
             name: 'GripGrab ProGel Cykelhandsker, sort, large', 
             sku: '1001-01-L',
             image: 'https://static.cykelshoppen.dk/ai/125/storage/images/products/1001_01.jpg',
-            price: '289,00',
+            price: 'DKK 289,00',
             stockStatus: true,
             quantity: 1,
             brand: 'GribGrab',
@@ -17,7 +17,7 @@
             name: 'Rogelli Pesaro 2.0 Vinterjakke, Fluor, Large', 
             sku: '003.046.L',
             image: 'https://static.cykelshoppen.dk/ai/125/storage/images/products/003.046_01_pesaro2_jacket_fluor.jpg',
-            price: '399,00',
+            price: 'DKK 399,00',
             stockStatus: true,
             quantity: 1, 
             brand: 'Rogelli',
@@ -27,7 +27,7 @@
             name: 'Specialized Align II Mips Cykelhjelm, Hyprviz (S/M 51-56cm)', 
             sku: '60821-1012',
             image: 'https://static.cykelshoppen.dk/ai/125/storage/images/products/Specialized%20Align%20II%20Mips%20Cykelhjelm%20Hyprviz.jpg',
-            price: '449,00',
+            price: 'DKK 449,00',
             stockStatus: false,
             quantity: 1, 
             brand: 'Specialized',
@@ -37,7 +37,7 @@
             name: 'Cube Aim Race 29 Black - MTB - 2022, 24', 
             sku: 'C501400-24',
             image: 'https://static.cykelshoppen.dk/ai/125/storage/images/products/501400_light_zoom.jpg',
-            price: '5.895,00',
+            price: 'DKK 5.895,00',
             stockStatus: true,
             quantity: 1, 
             brand: 'Specialized',
@@ -46,7 +46,7 @@
         ]}
         "
     role="list"
-    class="-my-4 divide-y divide-gray-200"
+    class="-my-4 divide-y divide-gray-200 overflow-auto"
   >
     <template x-for="product in products" :key="product.sku" hidden>
       <li class="py-6 flex">
@@ -57,6 +57,7 @@
             h-20
             border border-gray-200
             rounded-md
+            shadow-sm
             overflow-hidden
           "
         >
@@ -70,12 +71,12 @@
         <div class="ml-4 flex-1 flex flex-col">
           <div>
             <div
-              class="flex justify-between text-base font-medium text-gray-900"
+              class="flex justify-between text-base text-gray-800"
             >
-              <h3 class="text-sm">
+              <h3 class="text-xs md:text-sm">
                 <a x-text="product.name" href="#"></a>
               </h3>
-              <p class="ml-4 text-right min-w-max" x-text="product.price"></p>
+              <p class="ml-4 text-right min-w-max text-gray-900 text-xs font-medium md:text-sm" x-text="product.price"></p>
             </div>
             <template x-if="product.stockStatus">
               <p class="mt-1 text-green-500 text-xs">
@@ -88,8 +89,9 @@
               </p>
             </template>
           </div>
-          <div class="flex-1 flex items-end justify-between text-sm mt-4">
 
+          <template x-if="!isCheckout" hidden>
+          <div class="flex-1 flex items-end justify-between text-sm mt-4">
             <div class="flex">
               <div class="text-gray-400 flex items-center cursor-pointer" x-on:click="product.quantity--">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,52 +115,19 @@
               </button>
             </div>
           </div>
+          </template>
+
+          <template x-if="isCheckout" hidden>
+            <div class="text-gray-400 text-xs mt-1">
+              <span x-text="product.quantity"></span> Stk.
+            </div>
+          </template>
         </div>
       </li>
     </template>
 
     <!-- More products... -->
   </ul>
-</div>
 
-<div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-  <div class="flex justify-between text-base font-medium text-gray-900">
-    <p>Subtotal</p>
-    <p>DKK 19.365,00</p>
-  </div>
-  <p class="mt-0.5 text-sm text-gray-500">
-    Fragtomkostninger bliver udregenet ved kassen
-  </p>
-  <div class="mt-6">
-    <a
-      href="#"
-      class="
-        flex
-        justify-center
-        items-center
-        px-6
-        py-3
-        border border-transparent
-        rounded-md
-        shadow-sm
-        text-base
-        font-medium
-        text-white
-        bg-teal-500
-        hover:bg-teal-700
-      "
-      >Gå til kassen</a
-    >
-  </div>
-  <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
-    <p>
-      eller
-      <button
-        type="button"
-        class="text-teal-600 font-medium hover:text-teal-500"
-      >
-        gå til kurven<span aria-hidden="true"> &rarr;</span>
-      </button>
-    </p>
-  </div>
-</div>
+
+

@@ -1,212 +1,36 @@
-<div class="text-gray-400 bg-gray-800  hidden lg:block"> 
-    <div class="container mx-auto px-5">
-    <div class="relative">
-  
-    <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-      <nav class="flex space-x-4"
-        x-data="
-        { categories: [
-          { 
-            name: 'Cykler',
-            link: '#',
-            categoriesLevelTwo: [
-            { 
-              name: 'Børnecykler',
-              link: '#',
-              categoriesLevelThree: [
-              { 
-                name: 'Løbecykler / Legecykler',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 12',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 16',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 18',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 20',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 24',
-                link: '#',
-              },
-              { 
-                name: 'Børnecykel 26',
-                link: '#',
-              },
-              ]
-            },
-            { 
-              name: 'Damecykler',
-              link: '#',
-              categoriesLevelThree: [
-              { 
-                name: 'Damecykel - Citybike',
-                link: '#',
-              },
-              { 
-                name: 'Damecykel - Klassisk',
-                link: '#',
-              },
-              { 
-                name: 'Damecykel - Trekking - Touring',
-                link: '#',
-              },
-              ]
-            },
-            { 
-              name: 'Herrecykler',
-              link: '#',
-              categoriesLevelThree: [
-              { 
-                name: 'Herrecykel - Citybike',
-                link: '#',
-              },
-              { 
-                name: 'Herrecykel - Klassisk',
-                link: '#',
-              },
-              { 
-                name: 'Herrecykel - Trekking - Touring',
-                link: '#',
-              },
-              ]
-            },
-            { 
-              name: 'Elcykler',
-              link: '#',
-              categoriesLevelThree: [
-              { 
-                name: 'Dame elcykel',
-                link: '#',
-              },
-              { 
-                name: 'Herre elcykel',
-                link: '#',
-              },
-              { 
-                name: 'Lav indstignings elcykel',
-                link: '#',
-              },
-              { 
-                name: 'eMTB',
-                link: '#',
-              },
-              { 
-                name: 'Speed Pedelec - 45km/t',
-                link: '#',
-              },
-              ]
-            },
-            { 
-              name: 'Mountainbike',
-              link: '#',
-            },
-            { 
-              name: 'Racercykler',
-              link: '#',
-            },
-            { 
-              name: 'BMX Cykler',
-              link: '#',
-            },
-            { 
-              name: 'Specialcykler',
-              link: '#',
-            },
-            ]
-
-          },
-          { 
-            name: 'Cykelhjelme',
-            link: '#',
-            categoriesLevelTwo: [
-            { 
-              name: 'Børne / Junior',
-              link: '#',
-            },
-            { 
-              name: 'Voksenhjelme',
-              link: '#',
-            },
-            { 
-              name: 'MTB Hjelme',
-              link: '#',
-            },
-            { 
-              name: 'Racerhjelme',
-              link: '#',
-            },
-            { 
-              name: 'Fullface hjelme',
-              link: '#',
-            },
-            { 
-              name: 'Tilbehør / Reservedele',
-              link: '#',
-            },
-            ]
-          },
-          { 
-            name: 'Cykeltøj',
-            link: '#',
-          },
-          { 
-            name: 'Reservedele',
-            link: '#',
-          },
-          { 
-            name: 'Hjul, dæk og slanger',
-            link: '#',
-          },
-          { 
-            name: 'Udstyr og tilbehør',
-            link: '#',
-          },
-          { 
-            name: 'Værktøj og pleje',
-            link: '#',
-          },
-          { 
-            name: 'Tilbud',
-            link: '#',
-          },
-        ]}
-      "
-      >
-          
+<div class="text-gray-600 bg-opacity-90 bg-white border-b border-t  filter drop-shadow-sm hidden xl:block xl:sticky z-10 top-0 backdrop-filter backdrop-blur-sm"> 
+  <div class="container mx-auto px-1">
+    <div class="flex justify-between items-center">
+      <nav class="flex">
+            <div>
+              <a href="/" class="font-medium uppercase text-gray-600 text-sm px-4 py-5 group inline-flex items-center transition-colors hover:text-teal-600">
+                <span>Forside</span>
+              </a>
+            </div>
           <template x-for="category in categories" :key="category.name" hidden>
             <div x-data="{ megaMenu: false }">
-              <template x-if="category.categoriesLevelTwo">
-                <button @click.prevent="megaMenu = ! megaMenu;" type="button" :class="megaMenu ? 'bg-white text-gray-800 rounded-t-sm' : ''" class="tracking-wide font-medium uppercase text-white text-sm px-3 py-2 group inline-flex items-center transition-colors" aria-expanded="false">
+              <template x-if="category.categoriesLevelTwo" hidden>
+                <a 
+                  @click.prevent="megaMenu = ! megaMenu;" 
+                  :href="category.link"
+                  :class="megaMenu ? 'text-teal-600 bg-teal-50' : ''" 
+                  class="font-medium uppercase text-gray-600 text-sm px-3 py-5 group inline-flex items-center transition-colors hover:text-teal-600" 
+                  aria-expanded="false"
+                  >
                   <span x-text="category.name"></span>
-                  <!--
-                    Heroicon name: solid/chevron-down
-                 
-                    <svg :class="megaMenu ? 'text-gray-800 rotate-90' : ''" class="text-gray-400 ml-1 h-5 w- transition-colors transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg> -->
-
-                    <svg xmlns="http://www.w3.org/2000/svg" :class="megaMenu ? 'text-gray-800 rotate-90' : ''" class="h-5 w-5 ml-1 text-gray-400 transform transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                </a>
               </template>
               <template x-if="!category.categoriesLevelTwo">
-                <button type="button" class="tracking-wide font-medium uppercase text-white text-sm px-3 py-2 group rounded-md inline-flex items-center focus:outline-none focus:ring-2 focus:ring-teal-500" aria-expanded="false">
+                <a 
+                  :href="category.link"
+                  class="font-medium uppercase text-gray-600  text-sm px-3 py-5 group inline-flex items-center transition-colors hover:text-teal-600" 
+                  aria-expanded="false"
+                  >
                   <span x-text="category.name"></span>
-                </button>
+                </a>
               </template>
               <div 
-                class="absolute flex flex-wrap bg-white px-4 pb-6 shadow-md w-full left-0" 
+                class="absolute bg-white px-4 pb-6 shadow-md w-full left-0 right-0 border-t z-10 " 
                 x-show="megaMenu" 
                 @click.outside="megaMenu = false"
                 x-transition:enter="transition ease-out duration-200"
@@ -216,22 +40,23 @@
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
               >
-                <template x-for="category in category.categoriesLevelTwo" :key="category.name" hidden>
-                  <div class="w-1/6 px-4">
-                    <a href="#" class="title-font text font-medium text-gray-800 tracking-wide mb-1 w-full block mt-6" x-text="category.name"></a>
-                    <template x-for="category in category.categoriesLevelThree" :key="category.name" hidden>
-                        <a href="#" class="text-gray-600 mb-1 w-full block" x-text="category.name"></a>
-                    </template>
-                  </div>
-                </template>
+                <div class="container mx-auto px-5 grid grid-cols-4">
+                  <template x-for="category in category.categoriesLevelTwo" :key="category.name" hidden>
+                    <div>
+                      <a href="#" class="title-font text font-medium text-teal-600 tracking-wide mb-1 w-full block mt-6" x-text="category.name"></a>
+                      <template x-for="category in category.categoriesLevelThree" :key="category.name" hidden>
+                          <a :href="category.link" class="text-gray-600 mb-1 w-full block hover:text-teal-600" x-text="category.name"></a>
+                      </template>
+                    </div>
+                  </template>
+                </div>
               </div>
             </div>
           </template>
         </nav>
       </div>
-    </div>
   </div>
-  </div>
+</div>
 
 
   

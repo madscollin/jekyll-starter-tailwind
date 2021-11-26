@@ -1,0 +1,203 @@
+---
+---
+
+{% include applicationTop.html %}
+
+{% include header/checkoutHeader.html %}
+{% include header/desktopUspBar.html %}
+{% include header/mobileUspBar.html %}
+{% include modules/modalInfo.html %}
+{% include modules/modalPackageShop.html %}
+{% include modules/modalDeliveryNotice.html %}
+{% include modules/modalReturningUser.html %}
+{% include modules/modalGiftCard.html %}
+{% include modules/modalComment.html %}
+
+
+<div class="bg-white lg:bg-gray-100">
+  <main class="container mx-auto lg:pb-24 lg:px-5"
+    x-data="
+      {
+        deliveryTypesSmall: [
+        {
+          name: 'PostNord Pakkeshop',
+          id: 'postNordShop',
+          text: 'Levering til pakkeshop',
+          price: 'DKK 34,00',
+          logo: 'postnord',
+          packageShop: true,
+          messageToPartner: false,
+        },
+        {
+          name: 'PostNord Privatadresse',
+          id: 'postNordHome',
+          text: 'Levering til døren',
+          price: 'DKK 0,00',
+          logo: 'postnord',
+          packageShop: false,
+          messageToPartner: false,
+        },
+        {
+          name: 'PostNord Erhversadresse',
+          id: 'postNordBusiness',
+          text: 'Levering til firmaadresser',
+          price: 'DKK 0,00',
+          logo: 'postnord',
+          packageShop: false,
+          messageToPartner: false,
+        },
+        {
+          name: 'GLS Privatadresse',
+          id: 'GLSHome',
+          text: 'Levering til døren',
+          price: 'DKK 49,00',
+          logo: 'gls',
+          packageShop: false,
+          messageToPartner: false,
+          },
+          {
+            name: 'GLS Erhversadresse',
+            id: 'GLSBusiness',
+            text: 'Levering til firmaadresser',
+            price: 'DKK 42,00',
+            logo: 'gls',
+            packageShop: false,
+            messageToPartner: false,
+          },
+          {
+            name: 'GLS Pakkeshop',
+            id: 'GLSShop',
+            text: 'Levering til pakkeshop',
+            price: 'DKK 0,00',
+            logo: 'gls',
+            packageShop: true,
+            messageToPartner: false,
+          },
+          {
+            name: 'Afhentning hos Cykelshoppen',
+            id: 'LocalPickup',
+            text: 'Sverigesvej 9C, 8660 Skanderborg',
+            price: 'DKK 0,00',
+            logo: 'cykelshoppen',
+            packageShop: false,
+            messageToPartner: false,
+          },
+        ],
+        deliveryTypesLarge: [
+        {
+          name: 'Jetpak - Standardlevering',
+          id: 'jetpakStandard',
+          text: 'Standard levering med Jetpak - 3-5 hverdage leveringstid',
+          price: 'DKK 0,00',
+          logo: 'jetpak',
+          packageShop: false,
+          messageToPartner: true,
+        },
+        {
+          name: 'Jetpak - Fleksibel levering',
+          id: 'jetpakFlex',
+          text: 'Jetpak kontakter dig dagen inden levering for nærmere oplysning om leveringstidspunktet - 3-5 hverdage leveringstid',
+          price: 'DKK 39,00',
+          logo: 'jetpak',
+          packageShop: false,
+          messageToPartner: true,
+        },
+        {
+            name: 'Afhentning hos Cykelshoppen',
+            id: 'LocalPickup',
+            text: 'Sverigesvej 9C, 8660 Skanderborg',
+            price: 'DKK 0,00',
+            logo: 'cykelshoppen',
+            packageShop: false,
+            messageToPartner: false,
+          },
+        ],
+        paymentTypesLarge: [
+        {
+          name: 'Betalingskort',
+          id: 'creditcard',
+          text: 'Dankort, Visa, Mastercard, Maestro',
+          logo: 'creditcard'
+        },
+        {
+          name: 'MobilePay',
+          id: 'mobilepay',
+          text: 'Betal med din mobil',
+          logo: 'mobilepay'
+        },
+        {
+          name: 'Sparxpress',
+          id: 'sparexpress',
+          text: 'Betal med SparExpress finansering',
+          logo: 'sparexpress'
+        },
+        {
+          name: 'EAN Betaling',
+          id: 'ean',
+          text: 'Betal med elektronisk faktura',
+          logo: 'ean',
+          showPayment: false,
+        },
+        ],
+        paymentTypesSmall: [
+        {
+          name: 'Betalingskort',
+          id: 'creditcard',
+          text: 'Dankort, Visa, Mastercard, Maestro',
+          logo: 'creditcard'
+        },
+        {
+          name: 'MobilePay',
+          id: 'mobilepay',
+          text: 'Betal med din mobil',
+          logo: 'mobilepay'
+        },
+        {
+          name: 'ViaBill',
+          id: 'viabill',
+          text: 'Del betalingen op. Nul renter, nul gebyr.',
+          logo: 'viabill'
+        },
+        {
+          name: 'EAN Betaling',
+          id: 'ean',
+          text: 'Betal med elektronisk faktura',
+          logo: 'ean',
+          showPayment: false,
+        },
+        ],
+        selectedPayment: '',
+        selectedDelivery: '',
+        isCheckout: true,
+        customerComment: false,
+        customerType: 'private',
+      }
+    "
+  >
+    
+
+    <form>
+      <div class="grid lg:grid-cols-5 lg:gap-8 xl:gap-16">
+        <div class="col-span-5 lg:col-span-3">
+          <div class="bg-white lg:border-gray-200 lg:border lg:rounded-md lg:shadow-sm p-5 lg:mt-10">
+        {% include checkout/customerInformation.html %}
+        {% include checkout/deliveryMethods.html %}
+        {% include checkout/paymentMethods.html %}
+          <div class="lg:hidden mt-8">
+            {% include checkout/customerOrder.html %}
+          </div>
+        {% include checkout/submitOrder.html %}
+        </div>
+        </div>
+        <div class="col-span-5 lg:col-span-2">
+          <div class="hidden lg:sticky lg:block bg-white border-gray-200 border rounded-md shadow-sm p-5 mt-10 top-5">
+            {% include checkout/customerOrder.html %}
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</div>
+
+{% include footer/checkoutFooter.html %}
+{% include applicationBottom.html %}

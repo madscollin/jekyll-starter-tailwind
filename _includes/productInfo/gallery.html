@@ -1,0 +1,35 @@
+<div class="col-span-5 lg:col-span-3" x-data="{
+    images: [
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-3.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-4.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-5.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-6.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-7.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-2.png',
+        'storage/images/products/specialized-turbo-creo-sl-expert-evo-elcykel-2022~Turbo%20Creo%20SL%20Expert%20EVO-1.png'
+
+    ]
+}">
+
+    <div class="flex flex-col" x-data="{ total: images.length, current: 0 }">
+        <div id="main-slider" class="w-full relative splide">
+            <div class="splide__track">
+                <div class="splide__list">
+                    <template x-for="(image, index) in images" :key="index" hidden>
+                        <div class="splide__slide">
+                            <img loading="lazy" :src="'https://static.cykelshoppen.dk/ai/800/'+image" />
+                        </div>
+                    </template>
+                </div>
+            </div>   
+        </div>
+        <div id="thumbnails" class="hidden md:flex w-full thumbnails flex-wrap">
+            <template x-for="(image, index) in images" :key="index" hidden>
+                <div class="thumbnail mb-2 mr-2 border border-gray-200 rounded shadow-sm p-1 flex items-center">
+                    <img loading="lazy" :src="'https://static.cykelshoppen.dk/ai/80/'+image" />
+                </div>
+            </template>
+        </div>
+    </div>
+</div>

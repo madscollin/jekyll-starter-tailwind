@@ -1,0 +1,134 @@
+<div class="flex items-center justify-between">
+  <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 lg:text-3xl">Dine oplysninger</h1>
+  <button 
+    @click.prevent="showModalReturningUser = ! showModalReturningUser" 
+    class="flex justify-center items-center text-sm font-base px-3 py-2 border-gray-300 border text-gray-800 rounded shadow-sm bg-white hover:bg-gray-50">
+    Handlet før?
+  </button>
+</div>
+
+
+<!-- Customer type -->
+<div class="flex items-center mt-5 text-sm">
+    <div class="flex items-center mr-3">
+      <input @change="customerType = 'private'" class="mr-1 text-teal-500 focus:ring-teal-500" type="radio" id="private" name="customerType" value="private" checked>
+      <label class="text-gray-800" for="private">Privat</label>
+    </div>
+    <div class="flex items-center mr-3">
+      <input @change="customerType = 'business'" class="mr-1 text-teal-500 focus:ring-teal-500" type="radio" id="business" name="customerType" value="business">
+      <label class="text-gray-800" for="business">Erhverv</label>
+    </div>
+    <div class="flex items-center mr-3">
+      <input @change="customerType = 'government'" class="mr-1 text-teal-500 focus:ring-teal-500" type="radio" id="government" name="customerType" value="government">
+      <label class="text-gray-800" for="government">Offentilig</label>
+    </div>
+</div>
+
+  <!-- Customer Input -->
+
+  <div class="xl:flex xl:items-center">
+    <div class="mt-3 xl:w-1/2 xl:mr-3">
+      <label for="email" class="text-gray-800 text-sm">E-mail *</label>
+      <input type="email" id="email" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+    </div>
+
+    <div class="-mt-3 xl:mt-10 xl:w-1/2">
+      <label for="emailCheck" class="text-gray-800 text-sm font-medium flex items-center bg-teal-50 border border-teal-600 rounded-b-md px-2 pt-5 pb-2 xl:p-3 xl:h-10 xl:rounded-md">
+        <input class="mr-2 text-teal-500 focus:ring-teal-500" type="checkbox" id="emailCheck" name="emailCheck" value="false"> 
+        Ja tak til gode nyheder og tilbud på e-mail
+      </label>
+    </div>
+  </div>
+
+  <template x-if="customerType == 'private'">
+    <div class="mt-3">
+      <label for="text" class="text-gray-800 text-sm">For- og efternavn *</label>
+      <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+    </div>
+  </template>
+
+  <template x-if="customerType == 'business'">
+    <div>
+      <div class="xl:flex xl:items-center">
+        <div class="mt-3 xl:w-1/2 xl:mr-3">
+          <label for="text" class="text-gray-800 text-sm">CVR-nummer *</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+        </div>
+
+        <div class="mt-3 xl:w-1/2">
+          <label for="text" class="text-gray-800 text-sm">EAN-nummer</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out">
+        </div>
+      </div>
+
+      <div class="xl:flex xl:items-center">
+        <div class="mt-3 xl:w-1/2 xl:mr-3">
+          <label for="text" class="text-gray-800 text-sm">Firmanavn *</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+        </div>
+
+        <div class="mt-3 xl:w-1/2">
+          <label for="text" class="text-gray-800 text-sm">Att</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template x-if="customerType == 'government'">
+    <div>
+      <div class="mt-3">
+        <label for="text" class="text-gray-800 text-sm">EAN-nummer *</label>
+        <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+      </div>
+
+      <div class="xl:flex xl:items-center">
+        <div class="mt-3 xl:w-1/2 xl:mr-3">
+          <label for="text" class="text-gray-800 text-sm">Firmanavn / Offentlig endhed *</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+        </div>
+
+        <div class="mt-3 xl:w-1/2">
+          <label for="text" class="text-gray-800 text-sm">Att</label>
+          <input type="text" id="text" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <div class="mt-3">
+    <label for="address" class="text-gray-800 text-sm">Adresse *</label>
+    <input type="text" id="address" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+  </div>
+
+  <div class="mt-3 flex">
+    <div class="w-1/3 mr-3">
+      <label for="postalcode" class="text-gray-800 text-sm">Postnr. *</label>
+      <input type="tel" id="postalcode" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+    </div>
+
+    <div class="w-2/3">
+      <label for="city" class="text-gray-800 text-sm">By *</label>
+      <input type="text" id="city" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <label for="address" class="text-gray-800 text-sm">Land *</label>
+    <select class="border-gray-300 bg-gray-50 w-full mt-1 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+      <option value="Danmark">
+          Danmark
+      </option>
+      <option value="Sverige">
+        Sverige
+      </option>
+      <option value="Norge">
+        Norge
+      </option>
+    </select>
+  </div>
+
+  <div class="mt-3">
+    <label for="telephone" class="text-gray-800 text-sm">Telefon *</label>
+    <input type="tel" id="telephone" class="mt-1 w-full py-2 pr-4 bg-gray-50 text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-teal-600 focus:ring focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out" required>
+  </div>
